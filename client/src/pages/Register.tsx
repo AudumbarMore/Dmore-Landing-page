@@ -12,100 +12,105 @@ const Register = () => {
   const [mobile, setMobile] = useState('');
   const [companyName, setCompanyName] = useState('');
   const [companyAddress, setCompanyAddress] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setError('');
     setLoading(true);
     try {
       await register(name, email, password, mobile, companyName, companyAddress);
       navigate('/admin');
     } catch (err) {
-      setError('Registration failed. Please try a different email.');
+      // swallow error (no UI message)
+      console.error('Registration error', err);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-card">
-        <p className="badge subtle">Onboarding</p>
-        <h2>Create your account</h2>
-        <p className="lede">Start with secure authentication out of the box.</p>
+    <div className="auth-page register-page">
+      <div className="register-card">
+        <div className="register-header">
+          <div className="register-icon">🏭</div>
+          <div>
+            <p className="badge">Get Started</p>
+            <h1>Create your PaintOS account</h1>
+            <p className="register-subtitle">Join paint factories managing their business intelligently</p>
+          </div>
+        </div>
 
-        <form onSubmit={handleSubmit} className="form">
-          <label>
-            Full name
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              placeholder="Alex Johnson"
-              required
-            />
-          </label>
-          <label>
-            Email
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@morex.com"
-              required
-            />
-          </label>
-          <label>
-            Password
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
-              required
-            />
-          </label>
-          <label>
-            Mobile number
-            <input
-              type="tel"
-              value={mobile}
-              onChange={(e) => setMobile(e.target.value)}
-              placeholder="+1 555 123 4567"
-              required
-            />
-          </label>
-          <label>
-            Company name
-            <input
-              type="text"
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
-              placeholder="Morex Technology"
-              required
-            />
-          </label>
-          <label>
-            Company address
-            <textarea
-              value={companyAddress}
-              onChange={(e) => setCompanyAddress(e.target.value)}
-              placeholder="Street, city, state, ZIP"
-              required
-              rows={3}
-              style={{ resize: 'vertical' }}
-            />
-          </label>
-          {error && <p className="error">{error}</p>}
-          <button type="submit" className="btn primary" disabled={loading}>
-            {loading ? 'Creating…' : 'Create account'}
+        <form onSubmit={handleSubmit} className="register-form">
+          <div className="form-grid-register">
+            <div className="form-group">
+              <label>Full Name *</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Email Address *</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john@example.com"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Password *</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Mobile Number *</label>
+              <input
+                type="tel"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="+91 98765 43210"
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Company Name *</label>
+              <input
+                type="text"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="Your Paint Company"
+                required
+              />
+            </div>
+            <div className="form-group full-width">
+              <label>Company Address *</label>
+              <textarea
+                value={companyAddress}
+                onChange={(e) => setCompanyAddress(e.target.value)}
+                placeholder="Enter your factory address"
+                required
+                rows={3}
+                style={{ resize: 'vertical' }}
+              />
+            </div>
+          </div>
+          <button type="submit" className="btn primary register-btn" disabled={loading}>
+            {loading ? 'Creating account…' : 'Create account'}
           </button>
         </form>
 
-        <p className="hint">
-          Already have an account? <Link to="/login">Log in</Link>
+        <p className="register-footer">
+          Already have an account? <Link to="/login">Log in here</Link>
         </p>
       </div>
     </div>

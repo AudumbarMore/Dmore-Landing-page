@@ -6,6 +6,9 @@ import AdminDashboard from './pages/AdminDashboard';
 import Landing from './pages/Landing';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import About from './pages/About';
+import Careers from './pages/Careers';
+// import DemoLogin from './pages/DemoLogin';
 
 function App() {
   return (
@@ -15,7 +18,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
+           {/* <Route path="/demologin" element={<DemoLogin />} /> */}
           <Route path="/register" element={<Register />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/careers" element={<Careers />} />
           <Route
             path="/admin"
             element={

@@ -9,7 +9,6 @@ const Login = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const from = (location.state as { from?: Location })?.from?.pathname || '/admin';
@@ -17,12 +16,12 @@ const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
     try {
       await login(email, password);
       navigate(from, { replace: true });
     } catch (err) {
-      setError('Invalid credentials. Please try again.');
+      // swallow error (no UI message)
+      console.error('Login error', err);
     } finally {
       setLoading(false);
     }
@@ -56,7 +55,7 @@ const Login = () => {
               required
             />
           </label>
-          {error && <p className="error">{error}</p>}
+          {/* error messages hidden on UI */}
           <button type="submit" className="btn primary" disabled={loading}>
             {loading ? 'Signing in…' : 'Sign in'}
           </button>

@@ -118,28 +118,71 @@ const stats = [
   { label: 'Not', value: 'Generic ERP' },
 ];
 
+const pricingPlans = [
+  {
+    name: 'Basic',
+    price: '$99',
+    period: '/month',
+    description: 'Perfect for small paint factories getting started',
+    highlight: false,
+    features: [
+      'CRM Management',
+      'Order Management',
+      'Basic Production Planning',
+      'Inventory Tracking',
+      'Up to 5 Users',
+      'Email Support',
+      '7-Day Free Trial',
+    ],
+  },
+  {
+    name: 'Pro',
+    price: '$299',
+    period: '/month',
+    description: 'For growing paint manufacturers wanting full control',
+    highlight: true,
+    features: [
+      'Everything in Basic +',
+      'Advanced Production Planning',
+      'Quality Control Module',
+      'Formulation Intelligence',
+      'Unlimited Users',
+      'Dispatch & Invoicing',
+      'Payments Dashboard',
+      'Priority Support',
+      'Custom Reports',
+      'API Access',
+    ],
+  },
+];
+
 const Landing = () => {
   return (
     <div className="landing">
       <section className="hero">
-        <div className="badge">🚀 PaintOS</div>
-        <h1>
-          Smart ERP For Paint Manufacturers
-        </h1>
-        <p className="lede">
-          From Lead to Dispatch — One Smart System. Upgrade your paint factory into a professionally managed, intelligent manufacturing unit.
-        </p>
-        <div className="hero-actions">
-          <Link className="btn primary" to="/register">
-            Start Your Smart Factory
-          </Link>
-          <Link className="btn ghost" to="/login">
-            Already using PaintOS?
-          </Link>
+        <div className="hero-content">
+          <div className="badge">🚀 PaintOS</div>
+          <h1>
+            Smart ERP For Paint Manufacturers
+          </h1>
+          <p className="lede">
+            From Lead to Dispatch — One Smart System. Upgrade your paint factory into a professionally managed, intelligent manufacturing unit.
+          </p>
+          <div className="hero-actions">
+            <Link className="btn primary" to="/register">
+              Start Your Smart Factory
+            </Link>
+            <Link className="btn ghost" to="/login">
+              Already using PaintOS?
+            </Link>
+          </div>
+          <div className="hero-highlight">
+            <p>CRM • Production Planning • Inventory • Dispatch • Invoicing • Payments</p>
+          </div>
         </div>
-        <div className="hero-highlight">
-          <p>CRM • Production Planning • Inventory • Dispatch • Invoicing • Payments</p>
-        </div>
+        {/* <div className="hero-image">
+          <img src={heroImage} alt="Smart Paint Factory ERP System" />
+        </div> */}
       </section>
 
       <section id="problems" className="panel glass">
@@ -183,6 +226,9 @@ const Landing = () => {
       </section>
 
       <section className="panel cta-section">
+        {/* <div className="cta-image">
+          <img src={heroImage} alt="Get Started with PaintOS" />
+        </div> */}
         <div className="cta">
           <div>
             <p className="badge subtle">Stop Managing Chaos</p>
@@ -199,6 +245,86 @@ const Landing = () => {
           </div>
         </div>
       </section>
+
+      <section id="pricing" className="panel pricing-section">
+        <div className="panel-header">
+          <h2>💰 Simple, Transparent Pricing</h2>
+          <p>Choose the plan that fits your factory's needs. Cancel anytime.</p>
+        </div>
+        <div className="pricing-grid">
+          {pricingPlans.map((plan) => (
+            <div key={plan.name} className={`pricing-card ${plan.highlight ? 'pricing-highlight' : ''}`}>
+              {plan.highlight && <div className="pricing-badge">Most Popular</div>}
+              <div className="pricing-header">
+                <h3>{plan.name}</h3>
+                <p className="pricing-description">{plan.description}</p>
+              </div>
+              <div className="pricing-price">
+                <span className="price-amount">{plan.price}</span>
+                <span className="price-period">{plan.period}</span>
+              </div>
+              <Link className={`btn ${plan.highlight ? 'primary' : 'ghost'}`} to="/register" style={{ width: '100%', textAlign: 'center' }}>
+                Get Started
+              </Link>
+              <div className="pricing-features">
+                <p className="features-title">What's included:</p>
+                <ul className="features-list">
+                  {plan.features.map((feature) => (
+                    <li key={feature}>
+                      <span className="checkmark">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-section">
+            <h4>PaintOS</h4>
+            <p>Smart ERP for paint manufacturers. From lead to dispatch in one intelligent system.</p>
+          </div>
+          <div className="footer-section">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+              <li><a href="/">Security</a></li>
+              <li><a href="/">Updates</a></li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h4>Company</h4>
+            <ul>
+              <li><Link to="/about">About</Link></li>
+              <li><a href="/">Blog</a></li>
+              <li><Link to="/careers">Careers</Link></li>
+              <li><a href="/">Contact</a></li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="/">Privacy</a></li>
+              <li><a href="/">Terms</a></li>
+              <li><a href="/">Cookies</a></li>
+              <li><a href="/">License</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>&copy; 2025 PaintOS. All rights reserved.</p>
+          <div className="footer-socials">
+            <a href="/">Twitter</a>
+            <a href="/">LinkedIn</a>
+            <a href="/">GitHub</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
