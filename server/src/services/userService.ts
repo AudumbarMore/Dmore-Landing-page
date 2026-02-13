@@ -19,7 +19,7 @@ export const createUser = async (input: Omit<NewUser, 'id' | 'createdAt' | 'upda
     throw new Error('Email already in use');
   }
 
-  const password = await hashPassword(input.password);
+  const password = await hashPassword(input.password!);
   const [user] = await db
     .insert(users)
     .values({ ...input, password })
@@ -30,7 +30,7 @@ export const createUser = async (input: Omit<NewUser, 'id' | 'createdAt' | 'upda
 
 export const authenticateUser = async (email: string, password: string) => {
   const user = await findUserByEmail(email);
-  if (!user) return null;
+  if (!user || !user.isActive) return null;
 
   const isValid = await verifyPassword(password, user.password);
   if (!isValid) return null;
@@ -45,10 +45,20 @@ export const listUsers = () =>
     },
   });
 
-export const updateUser = async (
-  id: number,
-  data: Partial<Pick<User, 'name' | 'email' | 'role'>> & { password?: string }
-) => {
+// Extended type for update that includes all user fields including subscription fields
+export type UpdateUserInput = Partial<Pick<User, 
+  | 'name' 
+  | 'email' 
+  | 'role' 
+  | 'domain' 
+  | 'numberOfUsers' 
+  | 'planType' 
+  | 'subscriptionDuration' 
+  | 'accountStatus' 
+  | 'renewalDate'
+>> & { password?: string };
+
+export const updateUser = async (id: number, data: UpdateUserInput) => {
   const updatePayload: Record<string, unknown> = { ...data };
 
   if (data.password) {

@@ -35,7 +35,7 @@ const Register = () => {
           <div className="register-icon">🏭</div>
           <div>
             <p className="badge">Get Started</p>
-            <h1>Create your PaintOS account</h1>
+            <h1>CREATE YOUR PAINTOS ACCOUNT</h1>
             <p className="register-subtitle">Join paint factories managing their business intelligently</p>
           </div>
         </div>
@@ -94,12 +94,12 @@ const Register = () => {
             </div>
             <div className="form-group full-width">
               <label>Company Address *</label>
-              <textarea
+              <input
                 value={companyAddress}
                 onChange={(e) => setCompanyAddress(e.target.value)}
                 placeholder="Enter your factory address"
                 required
-                rows={3}
+               // rows={3}
                 style={{ resize: 'vertical' }}
               />
             </div>
