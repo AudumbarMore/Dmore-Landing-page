@@ -30,9 +30,13 @@ const Login = () => {
   return (
     <div className="auth-page">
       <div className="auth-card">
-        <p className="badge subtle">Access</p>
-        <h2>Welcome back</h2>
-        <p className="lede">Log in to manage your experience.</p>
+        <div className="auth-header">
+          <div className="brand-mark">🚀</div>
+          <div className="auth-title">
+            <h2>Welcome Login</h2>
+          </div>
+        </div>
+        <p className="lede">Sign in to your PaintOS account</p>
 
         <form onSubmit={handleSubmit} className="form">
           <label>

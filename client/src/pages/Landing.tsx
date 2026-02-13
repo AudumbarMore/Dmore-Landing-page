@@ -121,7 +121,7 @@ const stats = [
 const pricingPlans = [
   {
     name: 'Basic',
-    price: '$99',
+    price: 'Rs.1500',
     period: '/month',
     description: 'Perfect for small paint factories getting started',
     highlight: false,
@@ -137,7 +137,7 @@ const pricingPlans = [
   },
   {
     name: 'Pro',
-    price: '$299',
+    price: 'Rs.3000',
     period: '/month',
     description: 'For growing paint manufacturers wanting full control',
     highlight: true,

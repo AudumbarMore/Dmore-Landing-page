@@ -11,13 +11,21 @@ import { toCsv } from '../utils/csv';
 
 const router = Router();
 
+// Extended schema with subscription fields
 const userSchema = z.object({
   name: z.string().min(2),
   email: z.string().email(),
-  password: z.string().min(6),
+  password: z.string().min(6).optional(),
   role: z.enum(['admin', 'user']),
+  domain: z.string().optional(),
+  numberOfUsers: z.number().int().positive().optional(),
+  planType: z.enum(['basic', 'pro']).optional(),
+  subscriptionDuration: z.enum(['monthly', 'quarterly', '6months', '1year']).optional(),
+  accountStatus: z.enum(['active', 'disabled']).optional(),
+  renewalDate: z.string().optional(),
 });
 
+// For updates, all fields are optional (including password)
 const updateSchema = userSchema.partial();
 
 const sanitizeUser = (user: { password?: string; [key: string]: unknown }) => {
@@ -35,6 +43,10 @@ router.get('/', async (_req, res) => {
 router.post('/', async (req, res) => {
   try {
     const body = userSchema.parse(req.body);
+    // Require password for new user creation
+    if (!body.password) {
+      return res.status(400).json({ message: 'Password is required for new users' });
+    }
     const user = await createUser(body);
     return res.status(201).json({ user: sanitizeUser(user) });
   } catch (error) {
@@ -51,12 +63,15 @@ router.get('/export/csv', async (_req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      domain: user.domain,
+      planType: user.planType,
+      accountStatus: user.accountStatus,
       createdAt: user.createdAt,
     }))
   );
 
   res.setHeader('Content-Type', 'text/csv');
-  res.setHeader('Content-Disposition', 'attachment; filename=\"users.csv\"');
+  res.setHeader('Content-Disposition', 'attachment; filename="users.csv"');
   return res.send(csv);
 });
 
