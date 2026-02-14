@@ -131,8 +131,38 @@ const pricingPlans = [
       'Basic Production Planning',
       'Inventory Tracking',
       'Up to 5 Users',
-      'Email Support',
-      '7-Day Free Trial',
+           
+    ],
+  },
+    {
+    name: 'Basic',
+    price: 'Rs.1500',
+    period: '/month',
+    description: 'Perfect for small paint factories getting started',
+    highlight: false,
+    features: [
+      'CRM Management',
+      'Order Management',
+      'Basic Production Planning',
+      'Inventory Tracking',
+      'Up to 5 Users',
+           
+    ],
+    
+  },
+    {
+    name: 'Basic',
+    price: 'Rs.1500',
+    period: '/month',
+    description: 'Perfect for small paint factories getting started',
+    highlight: false,
+    features: [
+      'CRM Management',
+      'Order Management',
+      'Basic Production Planning',
+      'Inventory Tracking',
+      'Up to 5 Users',
+           
     ],
   },
   {
@@ -143,7 +173,7 @@ const pricingPlans = [
     highlight: true,
     features: [
       'Everything in Basic +',
-      'Advanced Production Planning',
+      '2K Production Planning',
       'Quality Control Module',
       'Formulation Intelligence',
       'Unlimited Users',
@@ -151,7 +181,45 @@ const pricingPlans = [
       'Payments Dashboard',
       'Priority Support',
       'Custom Reports',
-      'API Access',
+      
+    ],
+  },
+  {
+    name: 'Pro',
+    price: 'Rs.3000',
+    period: '/month',
+    description: 'For growing paint manufacturers wanting full control',
+    highlight: true,
+    features: [
+      'Everything in Basic +',
+      '2K Production Planning',
+      'Quality Control Module',
+      'Formulation Intelligence',
+      'Unlimited Users',
+      'Dispatch & Invoicing',
+      'Payments Dashboard',
+      'Priority Support',
+      'Custom Reports',
+      
+    ],
+  },
+  {
+    name: 'Pro',
+    price: 'Rs.3000',
+    period: '/month',
+    description: 'For growing paint manufacturers wanting full control',
+    highlight: true,
+    features: [
+      'Everything in Basic +',
+      '2K Production Planning',
+      'Quality Control Module',
+      'Formulation Intelligence',
+      'Unlimited Users',
+      'Dispatch & Invoicing',
+      'Payments Dashboard',
+      'Priority Support',
+      'Custom Reports',
+      
     ],
   },
 ];
