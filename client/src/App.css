@@ -857,6 +857,16 @@
   margin-top: 2rem;
 }
 
+/* Basic and Pro pricing grids - 3 cards in a row */
+.basic-pricing-grid,
+.pro-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+}
+
 .pricing-card {
   background: #FFFFFF;
   border: 1px solid #E5E7EB;

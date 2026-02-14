@@ -136,8 +136,8 @@ const pricingPlans = [
   },
     {
     name: 'Basic',
-    price: 'Rs.1500',
-    period: '/month',
+    price: 'Rs.8000',
+    period: '/6month',
     description: 'Perfect for small paint factories getting started',
     highlight: false,
     features: [
@@ -152,8 +152,8 @@ const pricingPlans = [
   },
     {
     name: 'Basic',
-    price: 'Rs.1500',
-    period: '/month',
+    price: 'Rs.15000',
+    period: '/1Year',
     description: 'Perfect for small paint factories getting started',
     highlight: false,
     features: [
@@ -184,10 +184,26 @@ const pricingPlans = [
       
     ],
   },
+  // {
+  //   name: 'Basic',
+  //   price: 'Rs.1500',
+  //   period: '/month',
+  //   description: 'Perfect for small paint factories getting started',
+  //   highlight: false,
+  //   features: [
+  //     'CRM Management',
+  //     'Order Management',
+  //     'Basic Production Planning',
+  //     'Inventory Tracking',
+  //     'Up to 5 Users',
+           
+  //   ],
+    
+  // },
   {
     name: 'Pro',
-    price: 'Rs.3000',
-    period: '/month',
+    price: 'Rs.15000',
+    period: '/6month',
     description: 'For growing paint manufacturers wanting full control',
     highlight: true,
     features: [
@@ -205,8 +221,8 @@ const pricingPlans = [
   },
   {
     name: 'Pro',
-    price: 'Rs.3000',
-    period: '/month',
+    price: 'Rs.27000',
+    period: '/1Year',
     description: 'For growing paint manufacturers wanting full control',
     highlight: true,
     features: [
@@ -319,9 +335,11 @@ const Landing = () => {
           <h2>💰 Simple, Transparent Pricing</h2>
           <p>Choose the plan that fits your factory's needs. Cancel anytime.</p>
         </div>
-        <div className="pricing-grid">
-          {pricingPlans.map((plan) => (
-            <div key={plan.name} className={`pricing-card ${plan.highlight ? 'pricing-highlight' : ''}`}>
+        
+        {/* Basic Plans - 3 cards in a row */}
+        <div className="pricing-grid basic-pricing-grid">
+          {pricingPlans.filter(plan => plan.name === 'Basic').map((plan, index) => (
+            <div key={`basic-${index}`} className={`pricing-card ${plan.highlight ? 'pricing-highlight' : ''}`}>
               {plan.highlight && <div className="pricing-badge">Most Popular</div>}
               <div className="pricing-header">
                 <h3>{plan.name}</h3>
@@ -332,7 +350,38 @@ const Landing = () => {
                 <span className="price-period">{plan.period}</span>
               </div>
               <Link className={`btn ${plan.highlight ? 'primary' : 'ghost'}`} to="/register" style={{ width: '100%', textAlign: 'center' }}>
-                Get Started
+                Buy Now
+              </Link>
+              <div className="pricing-features">
+                <p className="features-title">What's included:</p>
+                <ul className="features-list">
+                  {plan.features.map((feature) => (
+                    <li key={feature}>
+                      <span className="checkmark">✓</span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Pro Plans - 3 cards in a row */}
+        <div className="pricing-grid pro-pricing-grid">
+          {pricingPlans.filter(plan => plan.name === 'Pro').map((plan, index) => (
+            <div key={`pro-${index}`} className={`pricing-card ${plan.highlight ? 'pricing-highlight' : ''}`}>
+              {plan.highlight && <div className="pricing-badge">Most Popular</div>}
+              <div className="pricing-header">
+                <h3>{plan.name}</h3>
+                <p className="pricing-description">{plan.description}</p>
+              </div>
+              <div className="pricing-price">
+                <span className="price-amount">{plan.price}</span>
+                <span className="price-period">{plan.period}</span>
+              </div>
+              <Link className={`btn ${plan.highlight ? 'primary' : 'ghost'}`} to="/register" style={{ width: '100%', textAlign: 'center' }}>
+                Buy Now
               </Link>
               <div className="pricing-features">
                 <p className="features-title">What's included:</p>
